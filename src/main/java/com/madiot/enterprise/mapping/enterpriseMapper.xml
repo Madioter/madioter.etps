@@ -26,13 +26,15 @@
         <where>
             t. NAME LIKE #{name}
             <if test="beginDate != null">
-              AND t.reg_date &gt;= #{beginDate}
+                AND t.reg_date &gt;= #{beginDate}
             </if>
             <if test="endDate != null">
-              AND t.reg_date &lt;= #{endDate}
+                AND t.reg_date &lt;= #{endDate}
             </if>
         </where>
-        limit #{startNum},#{pageSize}
+        <if test="startNum > 0 and pageSize > 0">
+          limit #{startNum},#{pageSize}
+        </if>
     </select>
 
     <select id="countEnterpriseByNameAndRegDate" resultType="int">

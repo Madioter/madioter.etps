@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -35,8 +37,24 @@ public class EnterpriseController {
     private IEnterpriseService enterpriseService;
 
     @RequestMapping("/enterpriseList")
-    public String list(){
+    public String list() {
         return "enterprise/enterpriseList";
+    }
+
+    @RequestMapping("/enterpriseListJson")
+    @ResponseBody
+    public Map<String, Object> enterpriseListJson(String name, long beginDateMis, long endDateMis, int rows, int page) {
+        Date beginDate = null;
+        Date endDate = null;
+        if (beginDateMis > 0) {
+            beginDate = new Date(beginDateMis);
+        }
+        if (endDateMis > 0) {
+            endDate = new Date(endDateMis);
+        }
+        List<EnterpriseVo> enterpriseList = enterpriseService.queryEnterprisePageByCondition(name, beginDate, endDate, rows, page);
+        int total = enterpriseService.countEnterpriseByCondition(name, beginDate, endDate);
+
     }
 
 

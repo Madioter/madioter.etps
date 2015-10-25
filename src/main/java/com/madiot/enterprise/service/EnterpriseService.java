@@ -66,12 +66,22 @@ public class EnterpriseService implements IEnterpriseService {
                 } else {
                     enterpriseDao.update(model);
                 }
-                successCount ++;
-            }catch (Exception e){
+                successCount++;
+            } catch (Exception e) {
                 errorMessage.addError(model.getName() + "数据保存失败：" + e.getMessage());
             }
 
         }
         return successCount;
+    }
+
+    @Override
+    public List<EnterpriseVo> queryEnterprisePageByCondition(String name, Date beginDate, Date endDate, int rows, int page) {
+        return enterpriseDao.getEnterpriseByNameAndRegDate(name, beginDate, endDate, rows, page);
+    }
+
+    @Override
+    public int countEnterpriseByCondition(String name, Date beginDate, Date endDate) {
+        return enterpriseDao.countEnterpriseByNameAndRegDate(name, beginDate, endDate);
     }
 }
