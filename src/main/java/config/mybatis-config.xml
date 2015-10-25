@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!--         <setting name="enhancementEnabled" value="true"/> -->
+        <!--         <setting name="lazyLoadingEnabled" value="true"/> -->
+        <!--         <setting name="maxRequests" value="32"/> -->
+        <!--         <setting name="maxSessions" value="10"/> -->
+        <!--         <setting name="maxTransactions" value="5"/> -->
+        <!--         <setting name="useStatementNamespaces" value="true"/> -->
+
+        <!--     <setting name="lazyLoadingEnabled" value="true"/>-->
+        <!--     <setting name="aggressiveLazyLoading" value="false"/>-->
+    </settings>
+
+    <!-- 别名
+   <typeAliases>
+       <typeAlias type="com.asgard.bms.business.model.Person" alias="PersonAlias"/>
+   </typeAliases>
+    -->
+
+
+    <!--
+    指定数据库分页方言Dialect, 其它方言:OracleDialect,SQLServerDialect,SybaseDialect,DB2Dialect,PostgreSQLDialect,MySQLDialect,DerbyDialect
+
+    <plugins>
+        <plugin interceptor="com.asgard.cfap.plugin.dialect.interceptor.OffsetLimitInterceptor">
+            <property name="dialectClass" value="com.asgard.cfap.plugin.dialect.MySQLDialect"/>
+        </plugin>
+    </plugins>
+
+    <mappers>
+        <mapper resource="com.asgard.bms.business.mapper.PersonMapper.xml"/>
+    </mappers>
+     -->
+</configuration>
