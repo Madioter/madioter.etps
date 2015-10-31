@@ -4,7 +4,15 @@
 
 <mapper namespace="com.madiot.enterprise.dao.EnterpriseDao">
     <resultMap type="com.madiot.enterprise.model.EnterpriseVo" id="enterpriseResult">
-
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="industry" column="industry" />
+        <result property="legalPerson" column="legal_person" />
+        <result property="regAddress" column="reg_address" />
+        <result property="businessScope" column="business_scope" />
+        <result property="regAuth" column="reg_auth" />
+        <result property="regDate" column="reg_date" />
+        <result property="phone" column="phone" />
     </resultMap>
 
     <select id="getEnterpriseByNameAndRegDate" resultMap="enterpriseResult">
@@ -16,7 +24,7 @@
         t.id,
         t.phone,
         t.reg_address,
-        t.reg_date,
+        DATE_FORMAT(t.reg_date,'%Y-%m-%d') as reg_date,
         i.`name` AS industry,
         r.`name` AS reg_auth
         FROM
@@ -32,8 +40,8 @@
                 AND t.reg_date &lt;= #{endDate}
             </if>
         </where>
-        <if test="startNum > 0 and pageSize > 0">
-          limit #{startNum},#{pageSize}
+        <if test="startNum >= 0 and pageSize >= 0">
+          limit #{startNum}, #{pageSize}
         </if>
     </select>
 

@@ -50,7 +50,7 @@ public class CodeService implements ICodeService {
 
     @Override
     public Industry getIndustryByName(String name) {
-        if(name == null || name.equals("")){
+        if (name == null || name.equals("")) {
             return null;
         }
         List<Industry> industryList = getIndustryList();
@@ -64,7 +64,7 @@ public class CodeService implements ICodeService {
 
     @Override
     public RegAuth getRegAuthName(String name) {
-        if(name == null || name.equals("")){
+        if (name == null || name.equals("")) {
             return null;
         }
         List<RegAuth> regAuthList = getRegAuthList();
@@ -77,12 +77,16 @@ public class CodeService implements ICodeService {
     }
 
     @Override
-    public int saveIndustry(Industry industry){
-        return industryDao.save(industry);
+    public int saveIndustry(Industry industry) {
+        industryDao.save(industry);
+        industryList.add(industry);
+        return industry.getCode();
     }
 
     @Override
     public int saveRegAuth(RegAuth regAuth) {
-        return regAuthDao.save(regAuth);
+        regAuthDao.save(regAuth);
+        regAuthList.add(regAuth);
+        return regAuth.getCode();
     }
 }

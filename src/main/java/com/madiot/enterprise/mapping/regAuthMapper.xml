@@ -13,7 +13,7 @@
 
     <insert id="save"
             parameterType="com.madiot.enterprise.model.RegAuth"
-            useGeneratedKeys="true">
+            useGeneratedKeys="true" keyProperty="code">
         insert into
         c_registration_authority(name,code)
         values(#{name}, #{code})

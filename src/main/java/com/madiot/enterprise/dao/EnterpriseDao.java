@@ -15,7 +15,7 @@ public interface EnterpriseDao {
 
     public List<EnterpriseVo> getEnterpriseByNameAndRegDate(@Param("name") String name, @Param("beginDate") Date beginDate,
                                                             @Param("endDate") Date endDate, @Param("startNum") int startNum,
-                                                            @Param("pageSize") int pageSizeS);
+                                                            @Param("pageSize") int pageSize);
 
     public int countEnterpriseByNameAndRegDate(@Param("name") String name, @Param("beginDate") Date beginDate,
                                                @Param("endDate") Date endDate);

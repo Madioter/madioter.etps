@@ -30,7 +30,7 @@ public class EnterpriseService implements IEnterpriseService {
             try {
                 List<EnterpriseVo> enterpriseVoList = enterpriseDao.getEnterpriseByNameAndRegDate(model.getName(), null, null, 0, 1);
                 if (enterpriseVoList.size() > 0) {
-                    EnterpriseVo oldModel = enterpriseList.get(0);
+                    EnterpriseVo oldModel = enterpriseVoList.get(0);
                     if (oldModel.sameWith(model)) {
                         continue;
                     } else {
@@ -53,7 +53,7 @@ public class EnterpriseService implements IEnterpriseService {
 
                 RegAuth regAuth = codeService.getRegAuthName(model.getRegAuth());
                 if (regAuth != null) {
-                    model.setIndustryCode(regAuth.getCode());
+                    model.setRegAuthCode(regAuth.getCode());
                 } else {
                     regAuth = new RegAuth();
                     regAuth.setName(model.getRegAuth());
@@ -77,7 +77,7 @@ public class EnterpriseService implements IEnterpriseService {
 
     @Override
     public List<EnterpriseVo> queryEnterprisePageByCondition(String name, Date beginDate, Date endDate, int rows, int page) {
-        return enterpriseDao.getEnterpriseByNameAndRegDate(name, beginDate, endDate, rows, page);
+        return enterpriseDao.getEnterpriseByNameAndRegDate(name, beginDate, endDate, (page - 1) * rows, rows);
     }
 
     @Override

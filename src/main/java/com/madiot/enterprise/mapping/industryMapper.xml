@@ -13,7 +13,7 @@
 
     <insert id="save"
             parameterType="com.madiot.enterprise.model.Industry"
-            useGeneratedKeys="true">
+            useGeneratedKeys="true" keyProperty="code" >
         insert into
         c_industry(name,code)
         values(#{name}, #{code})
